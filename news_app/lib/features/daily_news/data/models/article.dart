@@ -1,19 +1,22 @@
+import 'package:news_app/features/daily_news/data/models/article_source.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 
 class ArticleModel extends ArticleEntity {
   const ArticleModel({
-    int? id,
-    String? author,
-    String? title,
-    String? description,
-    String? url,
-    String? urlToImage,
-    String? publishedAt,
-    String? content,
+    super.id,
+    super.source,
+    super.author,
+    super.title,
+    super.description,
+    super.url,
+    super.urlToImage,
+    super.publishedAt,
+    super.content,
   });
 
   factory ArticleModel.fromJson(Map<String, dynamic> map) {
-    return ArticleModel(
+    ArticleModel articleModel = ArticleModel(
+      source: ArticleSourceModel.fromJson(map['source']),
       author: map['author'] ?? "",
       title: map['title'] ?? "",
       description: map['description'] ?? "",
@@ -22,5 +25,6 @@ class ArticleModel extends ArticleEntity {
       publishedAt: map['publishedAt'] ?? "",
       content: map['content'] ?? "",
     );
+    return articleModel;
   }
 }
